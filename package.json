@@ -1,5 +1,5 @@
 {
-  "name": "fetch-mock",
+  "name": "fetchmock",
   "version": "0.0.1",
   "description": "window.fetch mock object inspired by Angular.js $httpBackend mock.",
   "scripts": {
@@ -8,7 +8,7 @@
   "main": "src/fetch-mock.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mvader/fetch-mock.git"
+    "url": "https://github.com/mvader/fetchmock.git"
   },
   "keywords": [
     "react",
@@ -18,9 +18,9 @@
   "author": "Miguel Molina <hi@mvader.me>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mvader/fetch-mock/issues"
+    "url": "https://github.com/mvader/fetchmock/issues"
   },
-  "homepage": "https://github.com/mvader/fetch-mock",
+  "homepage": "https://github.com/mvader/fetchmock",
   "devDependencies": {
     "es6-promise": "^2.3.0",
     "istanbul-instrumenter-loader": "^0.1.3",

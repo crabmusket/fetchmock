@@ -1,9 +1,9 @@
-# fetch-mock [![Build Status](https://travis-ci.org/mvader/fetch-mock.svg)](https://travis-ci.org/mvader/fetch-mock)
+# fetchmock [![Build Status](https://travis-ci.org/mvader/fetchmock.svg)](https://travis-ci.org/mvader/fetchmock)
 window.fetch mock object inspired by Angular.js $httpBackend mock.
 
 ## Install
 ```
-npm install fetch-mock
+npm install fetchmock
 ```
 
 ### TODO
