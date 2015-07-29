@@ -1,6 +1,6 @@
 {
   "name": "fetchmock",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "window.fetch mock object inspired by Angular.js $httpBackend mock.",
   "scripts": {
     "test": "./node_modules/karma/bin/karma start karma.config.js"

@@ -21,54 +21,60 @@ var FetchMock = function () {
 * Establishes a POST request expectation and the result it will be returned from it
 * @param {RegExp} pattern URL pattern to match the request
 * @param {Object} result Object with all the result data
+* @param {boolean} json Encode body as JSON
 */
-FetchMock.prototype.expectPOST = function (pattern, result) {
-  this.expect('POST', pattern, result);
+FetchMock.prototype.expectPOST = function (pattern, result, json) {
+  this.expect('POST', pattern, result, json);
 };
 
 /**
 * Establishes a PUT request expectation and the result it will be returned from it
 * @param {RegExp} pattern URL pattern to match the request
 * @param {Object} result Object with all the result data
+* @param {boolean} json Encode body as JSON
 */
-FetchMock.prototype.expectPUT = function (pattern, result) {
-  this.expect('PUT', pattern, result);
+FetchMock.prototype.expectPUT = function (pattern, result, json) {
+  this.expect('PUT', pattern, result, json);
 };
 
 /**
 * Establishes a DELETE request expectation and the result it will be returned from it
 * @param {RegExp} pattern URL pattern to match the request
 * @param {Object} result Object with all the result data
+* @param {boolean} json Encode body as JSON
 */
-FetchMock.prototype.expectDELETE = function (pattern, result) {
-  this.expect('DELETE', pattern, result);
+FetchMock.prototype.expectDELETE = function (pattern, result, json) {
+  this.expect('DELETE', pattern, result, json);
 };
 
 /**
 * Establishes a PATCH request expectation and the result it will be returned from it
 * @param {RegExp} pattern URL pattern to match the request
 * @param {Object} result Object with all the result data
+* @param {boolean} json Encode body as JSON
 */
 FetchMock.prototype.expectPATCH = function (pattern, result) {
-  this.expect('PATCH', pattern, result);
+  this.expect('PATCH', pattern, result, json);
 };
 
 /**
 * Establishes a HEAD request expectation and the result it will be returned from it
 * @param {RegExp} pattern URL pattern to match the request
 * @param {Object} result Object with all the result data
+* @param {boolean} json Encode body as JSON
 */
-FetchMock.prototype.expectHEAD = function (pattern, result) {
-  this.expect('HEAD', pattern, result);
+FetchMock.prototype.expectHEAD = function (pattern, result, json) {
+  this.expect('HEAD', pattern, result, json);
 };
 
 /**
 * Establishes a GET request expectation and the result it will be returned from it
 * @param {RegExp} pattern URL pattern to match the request
 * @param {Object} result Object with all the result data
+* @param {boolean} json Encode body as JSON
 */
-FetchMock.prototype.expectGET = function (pattern, result) {
-  this.expect('GET', pattern, result);
+FetchMock.prototype.expectGET = function (pattern, result, json) {
+  this.expect('GET', pattern, result, json);
 };
 
 /**
@@ -76,8 +82,9 @@ FetchMock.prototype.expectGET = function (pattern, result) {
 * @param {string} method Method of the request
 * @param {RegExp} pattern URL pattern to match the request
 * @param {Object} result Object with all the result data
+* @param {boolean} json Encode body as JSON
 */
-FetchMock.prototype.expect = function (method, pattern, result) {
+FetchMock.prototype.expect = function (method, pattern, result, json) {
   if (!(pattern instanceof RegExp)) {
     throw 'Pattern must be a RegExp';
   }
@@ -90,7 +97,7 @@ FetchMock.prototype.expect = function (method, pattern, result) {
     pattern: pattern,
     method: method,
     status: Number(result.status),
-    body: result.body,
+    body: json ? JSON.stringify(result.body) : result.body,
     headers: result.headers || {},
     matched: false
   });
