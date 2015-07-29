@@ -350,11 +350,13 @@ FetchMock.prototype.reset = function () {
 FetchMock.prototype.flush = function () {
   var self = this;
   self.requests.forEach(function (request, i) {
-    for (var j = 0, len = self.expectations.length; j < len; j++) {
-      var expectation = self.expectations[j];
+    if (request.flushed) {
+      return;
+    }
 
+    self.expectations.forEach(function (expectation, j) {
       if (expectation.pattern.test(request.url) &&
-      expectation.method.toUpperCase() === request.method.toUpperCase()) {
+          expectation.method.toUpperCase() === request.method.toUpperCase()) {
         self.expectations[j].matched = true;
         self.requests[i].flushed = true;
 
@@ -368,9 +370,8 @@ FetchMock.prototype.flush = function () {
         } else {
           request._reject(response);
         }
-        return;
       }
-    }
+    });
   });
 
   self.requests.forEach(function (request) {
