@@ -53,7 +53,7 @@ FetchMock.prototype.expectDELETE = function (pattern, result, json) {
 * @param {Object} result Object with all the result data
 * @param {boolean} json Encode body as JSON
 */
-FetchMock.prototype.expectPATCH = function (pattern, result) {
+FetchMock.prototype.expectPATCH = function (pattern, result, json) {
   this.expect('PATCH', pattern, result, json);
 };
 
