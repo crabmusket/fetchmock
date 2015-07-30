@@ -93,6 +93,11 @@ FetchMock.prototype.expect = function (method, pattern, result, json) {
     throw 'Invalid result given for expectation of method ' + method + ' and pattern ' + pattern;
   }
 
+  var headers = result.headers || {};
+  if (!headers['Content-Type'] && json) {
+    headers['Content-Type'] = 'application/json';
+  }
+
   this.expectations.push({
     pattern: pattern,
     method: method,
@@ -354,22 +359,24 @@ FetchMock.prototype.flush = function () {
       return;
     }
 
-    self.expectations.forEach(function (expectation, j) {
+    self.expectations.reverse().forEach(function (expectation, j) {
       if (expectation.pattern.test(request.url) &&
           expectation.method.toUpperCase() === request.method.toUpperCase()) {
+        if (!request.flushed) {
+          var response = new Response(expectation.body, {
+            status: expectation.status,
+            headers: expectation.headers
+          });
+
+          if (!isError(expectation.status)) {
+            request._resolve(response);
+          } else {
+            request._reject(response);
+          }
+        }
+
         self.expectations[j].matched = true;
         self.requests[i].flushed = true;
-
-        var response = new Response(expectation.body, {
-          status: expectation.status,
-          headers: expectation.headers
-        });
-
-        if (!isError(expectation.status)) {
-          request._resolve(response);
-        } else {
-          request._reject(response);
-        }
       }
     });
   });
