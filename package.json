@@ -1,6 +1,6 @@
 {
   "name": "fetchmock",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "window.fetch mock object inspired by Angular.js $httpBackend mock.",
   "scripts": {
     "test": "./node_modules/karma/bin/karma start karma.config.js"
@@ -11,9 +11,9 @@
     "url": "https://github.com/mvader/fetchmock.git"
   },
   "keywords": [
-    "react",
-    "pagination",
-    "component"
+    "fetch",
+    "mock",
+    "test"
   ],
   "author": "Miguel Molina <hi@mvader.me>",
   "license": "MIT",
