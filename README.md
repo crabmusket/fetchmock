@@ -116,4 +116,4 @@ Flushes all the requests. Iterates over all the requests made with fetch and tri
 If any request is not flushed (because it matches no expectation) or an expectation is not matched by any request this method will throw an error.
 When expectations are matched they are in reverse add order, that is, if you add an expectations for /users/ and then an expectation for /users\/list/ only the last one will be matched.
 
-You can se examples of usage of flush in previous examples.
+You can see examples of usage of flush in previous examples.
